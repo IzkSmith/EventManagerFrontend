@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import AuthService from '../Service/AuthService';
+import AuthService from '../service/AuthService';
 import {Link} from "react-router-dom";
 
-class Login extends Component {
+export default class Login extends Component {
     state = {
         username : '',
         password : ''
@@ -10,22 +10,21 @@ class Login extends Component {
 
     componentDidMount(){
         this.Auth = new AuthService();
-        if(this.Auth.loggedIn())
-            window.location.href =('/Events');
+        if (this.Auth.loggedIn()) window.location.href =('/Events');
     }
 
-    handleFormSubmit=(e)=>{
+    handleFormSubmit = (e) => {
         e.preventDefault();
-        this.Auth.login(this.state.username,this.state.password)
-            .then(res =>{
+        this.Auth.login(this.state.username, this.state.password)
+            .then(res => {
                 window.location.href = '/Events';
             })
-            .catch(err =>{
+            .catch(err => {
                 alert('Wrong username or password');
             })
     };
 
-    handleChange=(e)=>this.setState({[e.target.name]: e.target.value});
+    handleChange = (e) => this.setState({[e.target.name]: e.target.value});
 
     render() {
         return (
@@ -54,5 +53,3 @@ class Login extends Component {
         );
     }
 }
-
-export default Login;

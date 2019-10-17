@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AuthService from "../Service/AuthService";
+import AuthService from "../service/AuthService";
 
 class NewEvent extends Component {
     state = {

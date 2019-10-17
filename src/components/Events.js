@@ -12,8 +12,8 @@ export default class Events extends Component {
     };
 
     componentDidMount() {
-        localStorage.setItem('event_id',null);
-        this.getPage(+localStorage.getItem('page'));
+        localStorage.setItem('event_id', null);
+        this.getPage( +localStorage.getItem('page') );
     }
 
     getPage = async (page) => {
@@ -24,59 +24,56 @@ export default class Events extends Component {
         let res = await axios.get(`/api/v1/event/all${page}`, { headers: headers});
         const content = res.data.content;
         const total = res.data.totalPages;
-        for (let i = 0,len=content.length; i <len; i++) {
-            this.getCity(content[i], headers, content,i,len);
-            this.setState({totalPages:total})
+
+        for (let i = 0, len = content.length; i < len; i++) {
+            this.getCity(content[i], headers, content, i, len);
         }
+
+        this.setState({totalPages:total} );
     };
 
-    getCity = async (id, headers, content,i,len) => {
+    getCity = async (id, headers, content, i, len) => {
         let res = await axios.get(`/api/v1/city/${id.cityId}`, { headers: headers});
-        id.cityName=res.data.name;
-        if(i===len-1){
-            this.setState({content});
-            this.setState({loaded:true})
+        id.cityName = res.data.name;
+        this.setState({content} );
+
+        if ( i === len - 1 ) {
+            this.setState({loaded: true});
         }
     };
 
     handleNextClick = () => {
-        this.setState({loaded:false});
-        this.getPage(+localStorage.getItem('page')+1);
-        this.setState(localStorage.setItem('page',+localStorage.getItem('page')+1));
+        this.setState({loaded: false});
+        this.getPage(+localStorage.getItem('page') + 1);
+        this.setState( localStorage.setItem('page', +localStorage.getItem('page') + 1) );
     };
 
     handlePrevClick = () => {
         this.setState({loaded:false});
-        this.getPage(+localStorage.getItem('page')-1);
-        this.setState(localStorage.setItem('page',+localStorage.getItem('page')-1));
-    };
-
-    handleYourClick = () => {
-
+        this.getPage(+localStorage.getItem('page') - 1);
+        this.setState( localStorage.setItem('page', +localStorage.getItem('page') - 1) );
     };
 
     render() {
-        let createButton=(localStorage.getItem('roles').includes(2))?
+        let createButton=( localStorage.getItem('roles').includes(2) ) ?
                 <Link to="/NewEvent">
                     <input className="create" type="submit" name="" value="Create new event"/>
                 </Link>
             : '';
 
-        let prevButton=(+localStorage.getItem('page')>0)&&(this.state.loaded)?
+        let prevButton=(+localStorage.getItem('page') > 0)&&(this.state.loaded) ?
             <button type="button" className="prev" onClick={this.handlePrevClick}>Prev</button> : '';
 
-        let nextButton = (+localStorage.getItem('page')<this.state.totalPages-1)&&(this.state.loaded)?
+        let nextButton = ( +localStorage.getItem('page') < this.state.totalPages - 1 ) && (this.state.loaded) ?
             <button type="button" className="next" onClick={this.handleNextClick}>Next</button> : '';
 
         return (
             <div>
                 <div className="events-box">
                     <h1>Events</h1>
-                    {/*<p><button type={"button"} onClick={this.handleYourClick}>.</button>Show your events only</p>*/}
                     {
                         this.state.loaded?
                             <table width="1400" align="center">
-
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -108,9 +105,10 @@ export default class Events extends Component {
                                 <div className={"spinner"}>
                                     <Spinner size={120} spinnerColor={"#2ecc71"} spinnerWidth={2} visible={true} />
                                 </div>
-                            </table>}
+                            </table>
+                    }
                     {prevButton}
-                    <p>Page : {+localStorage.getItem('page')+1} of {this.state.totalPages}</p>
+                    <p>Page : {+localStorage.getItem('page') + 1} of {this.state.totalPages}</p>
                     {nextButton}
                 </div>
                 <div className="logout-box">

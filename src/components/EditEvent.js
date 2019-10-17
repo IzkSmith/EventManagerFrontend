@@ -1,57 +1,55 @@
 import React, { Component } from 'react';
 import LogoutButton from "./LogoutButton";
-import AuthService from "../Service/AuthService";
+import AuthService from "../service/AuthService";
 import axios from "axios";
 
-class NewEvent extends Component {
-
+export default class EditEvent extends Component {
     state = {
         content: []
     };
 
     componentDidMount() {
-        if(!localStorage.getItem('roles').includes(2))
+        if( !localStorage.getItem('roles').includes(2) ) {
             window.location.href =('/Events');
+        }
 
-        axios.get(`/api/v1/city/all`,
-            { headers: { 'Content-type':'application/json','authorization': 'Bearer '
-                        + localStorage.getItem('id_token')}})
+        let headers = {
+            'Content-type':'application/json',
+            'authorization': 'Bearer ' + localStorage.getItem('id_token')
+        };
+        axios.get(`/api/v1/city/all`, {headers: headers})
             .then(res => {
                 const content = res.data.content;
-                this.setState({content})
+                this.setState({content});
             });
 
         if (localStorage.getItem('event_id') !== null) {
-            axios.get(`/api/v1/event/${localStorage.getItem('event_id')}`,
-                { headers: { 'Content-type':'application/json','authorization': 'Bearer '
-                            + localStorage.getItem('id_token')}})
+            axios.get(`/api/v1/event/${localStorage.getItem('event_id')}`, {headers: headers})
                 .then(res => {
-                    this.getCity(res.data.cityId,res.data)
+                    this.getCity(res.data.cityId, res.data, headers);
                 })
         }
     }
 
-    getCity = async (id,data) => {
-        let res = await axios.get(`/api/v1/city/${id}`,
-            { headers: { 'Content-type':'application/json','authorization': 'Bearer '
-                        + localStorage.getItem('id_token')}});
+    getCity = async (id, data, headers) => {
+        let res = await axios.get(`/api/v1/city/${id}`, { headers: headers});
         this.setState({...data, cityName: res.data.name});
     };
 
-    handleFormSubmit =(e)=> {
+    handleFormSubmit = (e) => {
         this.Auth = new AuthService();
         e.preventDefault();
         this.Auth.editEvent(this.state.id, this.state.name, this.state.date, this.state.cityId,
-            this.state.maxMembers, this.state.description,localStorage.getItem('user_id'))
-            .then(res =>{
+            this.state.maxMembers, this.state.description, localStorage.getItem('user_id'))
+            .then(res => {
                 window.location.href = '/Events';
             })
-            .catch(err =>{
+            .catch(err => {
                 alert(err);
             })
     };
 
-    handleChange =(e)=> this.setState({[e.target.name]: e.target.value});
+    handleChange = (e) => this.setState({[e.target.name]: e.target.value});
 
     render() {
         return (
@@ -69,7 +67,7 @@ class NewEvent extends Component {
                         />
                         <input className="textbox"
                                name="date"
-                               value={(this.state.date||'').replace(/ /g, "T")}
+                               value={(this.state.date || '').replace(/ /g, "T")}
                                type="datetime-local"
                                min="2019-10-14T00:00" max="2020-12-30T00:00"
                                placeholder="Date"
@@ -78,11 +76,9 @@ class NewEvent extends Component {
                         <p>City :
                             <select name="cityId" onChange={this.handleChange}>
                                 {this.state.content.map(content =>
-                                    <option
-                                            value={content.id}>{content.name}</option>
-                                )}
+                                    <option value={content.id}>{content.name}</option>)}
                                 <option selected value={this.state.cityId}>{this.state.cityName}</option>
-                            </select >
+                            </select>
                         </p>
                         <input className="textbox"
                                name="maxMembers"
@@ -103,7 +99,7 @@ class NewEvent extends Component {
                                   onChange={this.handleChange}
                         />
 
-                        <input type="submit" className="btn" value="submit"/>
+                        <input type="submit" className="btn" value="submit" />
                     </form>
                 </div>
                 <div className="logout-box">
@@ -114,5 +110,3 @@ class NewEvent extends Component {
         );
     }
 }
-
-export default NewEvent;

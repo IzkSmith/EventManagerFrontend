@@ -14,18 +14,17 @@ export default function withAuth(AuthComponent) {
 
         componentDidMount() {
             if (!Auth.loggedIn()) {
-                window.location.href = '/'
-            }
-            else {
+                window.location.href = '/';
+            } else {
                 try {
                     const profile = Auth.getProfile();
                     this.setState({
                         user: profile
                     })
                 }
-                catch(err){
+                catch (err) {
                     Auth.logout();
-                    this.props.history.replace('/')
+                    this.props.history.replace('/');
                 }
             }
         }
@@ -33,9 +32,10 @@ export default function withAuth(AuthComponent) {
         render() {
             if (this.state.user) {
                 return (
-                    <AuthComponent history={this.props.history} user={this.state.user} />
+                    <AuthComponent history={this.props.history} user={this.state.user}/>
                 )
             }
+
             return null;
         }
     };

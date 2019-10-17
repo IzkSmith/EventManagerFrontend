@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import AuthService from '../Service/AuthService';
-import withAuth from "../Service/WithAuth";
+import AuthService from '../service/AuthService';
+import withAuth from "../service/WithAuth";
 
 const Auth = new AuthService();
 

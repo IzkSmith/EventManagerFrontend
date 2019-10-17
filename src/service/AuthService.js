@@ -81,16 +81,16 @@ export default class AuthService {
             ...options
         })
             .then(this._checkStatus)
-            .then(response => response.json())
+            .then(response => response.json());
     };
 
     _checkStatus = (response) => {
         if (response.status >= 200 && response.status < 300) {
-            return response
+            return response;
         } else {
-            var error = new Error(response.statusText)
-            error.response = response
-            throw error
+            var error = new Error(response.statusText);
+            error.response = response;
+            throw error;
         }
     };
 
@@ -103,7 +103,7 @@ export default class AuthService {
     isTokenExpired = (token) => {
         try {
             const decoded = decode(token);
-            return(decoded.exp < Date.now() / 1000)
+            return(decoded.exp < Date.now() / 1000);
         }
         catch (err) {
             return false;

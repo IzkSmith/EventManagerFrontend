@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import LogoutButton from "./LogoutButton";
-import AuthService from "../Service/AuthService";
+import AuthService from "../service/AuthService";
 import axios from "axios";
 
-class NewEvent extends Component {
-
+export default class NewEvent extends Component {
     state = {
         content: []
     };
@@ -13,29 +12,28 @@ class NewEvent extends Component {
         if(!localStorage.getItem('roles').includes(2))
             window.location.href =('/Events');
 
-        axios.get(`/api/v1/city/all`,
-            { headers: { 'Content-type':'application/json','authorization': 'Bearer '
-                        + localStorage.getItem('id_token')}})
+        axios.get(`/api/v1/city/all`, { headers: {'Content-type' : 'application/json',
+                'authorization': 'Bearer ' + localStorage.getItem('id_token')}})
             .then(res => {
                 const content = res.data.content;
                 this.setState({content})
             })
     }
 
-    handleFormSubmit=(e)=>{
+    handleFormSubmit = (e) => {
         this.Auth = new AuthService();
         e.preventDefault();
         this.Auth.newEvent(this.state.name, this.state.date, this.state.cityId,
             this.state.maxMembers, this.state.description, localStorage.getItem('user_id'))
-            .then(res =>{
+            .then(res => {
                 window.location.href = '/Events';
             })
-            .catch(err =>{
+            .catch(err => {
                 alert(err);
             })
     };
 
-    handleChange=(e)=>this.setState({[e.target.name]: e.target.value});
+    handleChange =(e) => this.setState({[e.target.name]: e.target.value});
 
     render() {
         console.log(this.state.content);
@@ -54,15 +52,15 @@ class NewEvent extends Component {
                         <input className="textbox"
                                name="date"
                                type="datetime-local"
-                               min="2019-10-14T00:00" max="2020-12-30T00:00"
+                               min="2019-10-14T00:00"
+                               max="2020-12-30T00:00"
                                placeholder="Date"
                                onChange={this.handleChange}
                         />
                         <p>City :
                             <select name="cityId" onChange={this.handleChange}>
-                        {this.state.content.map(content =>
-                                <option value={content.id}>{content.name}</option>
-                        )}
+                                {this.state.content.map(content =>
+                                    <option value={content.id}>{content.name}</option>)}
                                 <option>Select city</option>
                             </select >
                         </p>
@@ -88,11 +86,9 @@ class NewEvent extends Component {
                 </div>
                 <div className="logout-box">
                     <p><i className="fas fa-user"/> {localStorage.getItem('username')}</p>
-                    <LogoutButton/>
+                    <LogoutButton />
                 </div>
             </div>
         );
     }
 }
-
-export default NewEvent;
