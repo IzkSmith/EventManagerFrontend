@@ -29,14 +29,7 @@ class Event extends React.Component {
         this.setState({...data, cityName: res.data.name, loaded: true});
     };
 
-    postUser = async (data) => {
-       let res = await axios.post(`/api/v1/event`, data,
-            { headers: { 'Content-type':'application/json','authorization': 'Bearer '
-                        + localStorage.getItem('id_token')}});
-       this.setState(res.data);
-    };
-
-    handleSignup=() =>{
+    handleSignup = () => {
         const userId = +localStorage.getItem('user_id');
         const userIds = this.state.userIds;
 
@@ -60,19 +53,34 @@ class Event extends React.Component {
         }
     };
 
+    postUser = async (data) => {
+        let res = await axios.post(`/api/v1/event`, data,
+            { headers: { 'Content-type':'application/json','authorization': 'Bearer '
+                        + localStorage.getItem('id_token')}});
+        this.setState(res.data);
+    };
+
     render() {
+        console.log(this.state)
         let editButton;
+        let membersButton;
         let userId=+localStorage.getItem('user_id');
+        const userIds=this.state.userIds;
 
         if ((localStorage.getItem('roles').includes(1)) || (userId === this.state.holderId)) {
             localStorage.setItem('event_id', this.state.id);
             editButton =
                 <Link to="/EditEvent">
                     <input className="create" type="submit" name="" value="Edit this event"/>
-                </Link>
+                </Link>;
+            if ((userIds || '').length>0) {
+                membersButton =
+                    <Link to={"/Members"}>
+                        <input className="members" type="submit" name="" value="members"/>
+                    </Link>;
+            }
         }
 
-        const userIds=this.state.userIds;
         let label = (userIds || []).includes(userId) ? 'Sign out' : 'Sign in';
 
         return (
@@ -101,6 +109,7 @@ class Event extends React.Component {
                     <button className="signup" onClick={this.handleSignup}>{label}</button>
                 </div>
                 {editButton}
+                {membersButton}
             </div>
         )
     }

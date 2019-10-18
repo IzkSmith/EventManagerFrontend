@@ -17,7 +17,7 @@ class NewEvent extends Component {
         e.preventDefault();
         console.log(this.state);
         if (this.state.password === this.state.rPassword) {
-            this.Auth.newUser(this.state.username, this.state.email, this.state.password)
+            this.Auth.newUser(this.state.firstName, this.state.lastName, this.state.username, this.state.email, this.state.password)
                 .then(res => {
                     window.location.href = '/';
                 })
@@ -38,6 +38,18 @@ class NewEvent extends Component {
                 <div className="login-box">
                     <h1>Registration Form</h1>
                     <form onSubmit={this.handleFormSubmit}>
+                        <input className="textbox"
+                               name="firstName"
+                               type="text"
+                               placeholder="First name"
+                               onChange={this.handleChange}
+                        />
+                        <input className="textbox"
+                               name="lastName"
+                               type="text"
+                               placeholder="Last name"
+                               onChange={this.handleChange}
+                        />
                         <input className="textbox"
                                name="username"
                                type="text"

@@ -55,13 +55,15 @@ export default class Events extends Component {
     };
 
     render() {
-        let createButton=( localStorage.getItem('roles').includes(2) ) ?
+
+        console.log(this.state)
+        let createButton = ( (localStorage.getItem('roles') || '').includes(2) ) ?
                 <Link to="/NewEvent">
                     <input className="create" type="submit" name="" value="Create new event"/>
                 </Link>
             : '';
 
-        let prevButton=(+localStorage.getItem('page') > 0)&&(this.state.loaded) ?
+        let prevButton = (+localStorage.getItem('page') > 0)&&(this.state.loaded) ?
             <button type="button" className="prev" onClick={this.handlePrevClick}>Prev</button> : '';
 
         let nextButton = ( +localStorage.getItem('page') < this.state.totalPages - 1 ) && (this.state.loaded) ?
@@ -112,7 +114,7 @@ export default class Events extends Component {
                     {nextButton}
                 </div>
                 <div className="logout-box">
-                    <p><i className="fas fa-user"/> {localStorage.getItem('username')}</p>
+                    <p><i className="fas fa-user"/> {localStorage.getItem('firstName')} {localStorage.getItem('lastName')}</p>
                     <LogoutButton/>
                 </div>
                 <div>

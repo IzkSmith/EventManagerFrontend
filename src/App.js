@@ -7,12 +7,16 @@ import NewEvent from "./components/NewEvent";
 import Signup from "./components/Signup";
 import Event from "./components/Event";
 import EditEvent from "./components/EditEvent";
+import Members from "./components/Members";
 
 export default function App (){
     return (
             <Router>
                 <div>
                     <Switch>
+                        <Route path="/Members">
+                            <Members />
+                        </Route>
                         <Route path="/EditEvent">
                             <EditEvent />
                         </Route>

@@ -35,10 +35,12 @@ export default class AuthService {
         })
     };
 
-    newUser = (username, email, password) => {
+    newUser = (firstName ,lastName, username, email, password) => {
         return this.fetch(`/api/v1/user`, {
             method: 'POST',
             body: JSON.stringify({
+                firstName ,
+                lastName,
                 username,
                 email,
                 password
@@ -59,6 +61,8 @@ export default class AuthService {
         }).then(res => {
             localStorage.setItem('id_token', res.token);
             localStorage.setItem('roles', res.roles);
+            localStorage.setItem('firstName', res.firstName);
+            localStorage.setItem('lastName', res.lastName);
             localStorage.setItem('user_id', res.id);
             localStorage.setItem('username', res.username);
             localStorage.setItem('page', 0);
