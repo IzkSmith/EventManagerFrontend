@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AuthService from '../service/AuthService';
 import {Link} from "react-router-dom";
+import VK, { Auth } from "react-vk";
 
 export default class Login extends Component {
     state = {
@@ -21,6 +22,13 @@ export default class Login extends Component {
             })
             .catch(err => {
                 alert('Wrong username or password');
+            })
+    };
+
+    login = (username, password) => {
+        this.Auth.login(username, password)
+            .then(res => {
+                window.location.href = '/Events';
             })
     };
 
@@ -48,7 +56,24 @@ export default class Login extends Component {
                         type="submit"
                     />
                     <p>don't have an account yet? <Link to="/Signup">Sign up</Link></p>
+                    <p>or login with VK</p>
                 </form>
+                <VK apiId={7178797}>
+                    <Auth options={{
+                        'width':305
+                        ,onAuth: user => {
+                            console.log(user);
+                            this.Auth.login(user.uid, user.uid)
+                                .then(res => {
+                                    window.location.href = '/Events';
+                                })
+                                .catch(err => {
+                                    this.Auth.newUser(user.first_name, user.last_name, user.uid, user.uid+'@gmail.com', user.uid)
+                                        .then(res => {this.login(user.uid, user.uid);
+                                        })
+                                })
+                        }}}/>
+                </VK>
             </div>
         );
     }

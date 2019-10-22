@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AuthService from "../service/AuthService";
 
-class NewEvent extends Component {
+export default class Signup extends Component {
     state = {
         password: '',
         rPassword: ''
@@ -15,7 +15,6 @@ class NewEvent extends Component {
     handleFormSubmit = (e) => {
         this.Auth = new AuthService();
         e.preventDefault();
-        console.log(this.state);
         if (this.state.password === this.state.rPassword) {
             this.Auth.newUser(this.state.firstName, this.state.lastName, this.state.username, this.state.email, this.state.password)
                 .then(res => {
@@ -82,5 +81,3 @@ class NewEvent extends Component {
         );
     }
 }
-
-export default NewEvent;

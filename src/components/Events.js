@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import LogoutButton from "./LogoutButton";
 import axios from 'axios';
+import AuthService from "../service/AuthService";
 
 export default class Events extends Component {
     state = {
@@ -21,19 +22,19 @@ export default class Events extends Component {
             'Content-type':'application/json',
             'authorization': 'Bearer ' + localStorage.getItem('id_token')
         };
-        let res = await axios.get(`/api/v1/event/all${page}`, { headers: headers});
+        let res = await axios.get(`/api/v1/event/all${page}`);
         const content = res.data.content;
         const total = res.data.totalPages;
 
         for (let i = 0, len = content.length; i < len; i++) {
-            this.getCity(content[i], headers, content, i, len);
+            this.getCity(content[i], content, i, len);
         }
 
         this.setState({totalPages:total} );
     };
 
-    getCity = async (id, headers, content, i, len) => {
-        let res = await axios.get(`/api/v1/city/${id.cityId}`, { headers: headers});
+    getCity = async (id, content, i, len) => {
+        let res = await axios.get(`/api/v1/city/${id.cityId}`);
         id.cityName = res.data.name;
         this.setState({content} );
 
@@ -55,19 +56,21 @@ export default class Events extends Component {
     };
 
     render() {
-
-        console.log(this.state)
         let createButton = ( (localStorage.getItem('roles') || '').includes(2) ) ?
                 <Link to="/NewEvent">
                     <input className="create" type="submit" name="" value="Create new event"/>
                 </Link>
             : '';
 
-        let prevButton = (+localStorage.getItem('page') > 0)&&(this.state.loaded) ?
+        let prevButton = ((+localStorage.getItem('page') > 0) && (this.state.loaded)) ?
             <button type="button" className="prev" onClick={this.handlePrevClick}>Prev</button> : '';
 
-        let nextButton = ( +localStorage.getItem('page') < this.state.totalPages - 1 ) && (this.state.loaded) ?
+        let nextButton = ((+localStorage.getItem('page') < this.state.totalPages - 1) && (this.state.loaded)) ?
             <button type="button" className="next" onClick={this.handleNextClick}>Next</button> : '';
+
+        this.Auth = new AuthService();
+        let loginButton = (!this.Auth.loggedIn()) ?
+            <button type="button" className="logout" onClick={()=>{window.location.href =('/')}}>Login</button> : '';
 
         return (
             <div>
@@ -114,8 +117,8 @@ export default class Events extends Component {
                     {nextButton}
                 </div>
                 <div className="logout-box">
-                    <p><i className="fas fa-user"/> {localStorage.getItem('firstName')} {localStorage.getItem('lastName')}</p>
                     <LogoutButton/>
+                    {loginButton}
                 </div>
                 <div>
                     {createButton}

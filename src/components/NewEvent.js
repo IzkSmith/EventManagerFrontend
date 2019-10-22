@@ -9,7 +9,7 @@ export default class NewEvent extends Component {
     };
 
     componentDidMount() {
-        if(!localStorage.getItem('roles').includes(2))
+        if(!(localStorage.getItem('roles') || []).includes(2))
             window.location.href =('/Events');
 
         axios.get(`/api/v1/city/all`, { headers: {'Content-type' : 'application/json',

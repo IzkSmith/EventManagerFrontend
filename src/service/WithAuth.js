@@ -13,19 +13,14 @@ export default function withAuth(AuthComponent) {
         }
 
         componentDidMount() {
-            if (!Auth.loggedIn()) {
-                window.location.href = '/';
-            } else {
-                try {
-                    const profile = Auth.getProfile();
-                    this.setState({
-                        user: profile
-                    })
-                }
-                catch (err) {
-                    Auth.logout();
-                    this.props.history.replace('/');
-                }
+            try {
+                const profile = Auth.getProfile();
+                this.setState({
+                    user: profile
+                })
+            }
+            catch (err) {
+                Auth.logout();
             }
         }
 

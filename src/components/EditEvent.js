@@ -9,7 +9,7 @@ export default class EditEvent extends Component {
     };
 
     componentDidMount() {
-        if( !localStorage.getItem('roles').includes(2) ) {
+        if (!(localStorage.getItem('roles') || []).includes(2)) {
             window.location.href =('/Events');
         }
 
@@ -75,8 +75,10 @@ export default class EditEvent extends Component {
                         />
                         <p>City :
                             <select name="cityId" onChange={this.handleChange}>
-                                {this.state.content.map(content =>
-                                    <option value={content.id}>{content.name}</option>)}
+                                {
+                                    this.state.content.map(content =>
+                                    <option value={content.id}>{content.name}</option>)
+                                }
                                 <option selected value={this.state.cityId}>{this.state.cityName}</option>
                             </select>
                         </p>

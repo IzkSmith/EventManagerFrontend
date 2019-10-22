@@ -127,5 +127,7 @@ export default class AuthService {
         localStorage.removeItem('user_id');
         localStorage.removeItem('roles');
         localStorage.removeItem('event_id');
+        localStorage.removeItem('firstName');
+        localStorage.removeItem('lastName');
     };
 }

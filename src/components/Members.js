@@ -1,6 +1,5 @@
 import Spinner from 'react-spinner-material';
 import React, { Component } from 'react';
-import {Link} from "react-router-dom";
 import LogoutButton from "./LogoutButton";
 import axios from 'axios';
 
@@ -43,7 +42,7 @@ export default class Members extends Component {
         }
     };
 
-    handleDelete = (userId) =>{
+    handleDelete = (userId) => {
         const userIds = this.state.userIds;
         userIds.splice(userIds.indexOf(userId), 1);
 

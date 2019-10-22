@@ -2,7 +2,9 @@
 body {
   font-family: sans-serif;
   background-image: url(images/bg.jpg);
-  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
   height: 900px;
   background-size: 1920px 1080px;
 }

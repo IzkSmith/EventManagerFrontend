@@ -14,6 +14,7 @@ class App extends Component {
     render() {
         return (
             <div >
+                <p><i className="fas fa-user"/> {localStorage.getItem('firstName')} {localStorage.getItem('lastName')}</p>
                 <button type="button" className = "logout" onClick={this.handleLogout.bind(this)}>Logout</button>
             </div>
         );
