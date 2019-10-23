@@ -36,7 +36,7 @@ export default class AuthService {
     };
 
     newUser = (firstName ,lastName, username, email, password) => {
-        return this.fetch(`/api/v1/user`, {
+        return this.fetch(`/api/v1/user/register`, {
             method: 'POST',
             body: JSON.stringify({
                 firstName ,
@@ -123,6 +123,7 @@ export default class AuthService {
     };
 
     logout = () => {
+        localStorage.removeItem('avatar');
         localStorage.removeItem('id_token');
         localStorage.removeItem('user_id');
         localStorage.removeItem('roles');

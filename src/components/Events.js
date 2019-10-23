@@ -1,9 +1,9 @@
-import Spinner from 'react-spinner-material';
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
-import LogoutButton from "./LogoutButton";
+import LogoutButton from "./UserBox";
 import axios from 'axios';
-import AuthService from "../service/AuthService";
+import MySpinner from "./MySpinner";
+import LoginButton from "./LoginButton";
 
 export default class Events extends Component {
     state = {
@@ -18,10 +18,6 @@ export default class Events extends Component {
     }
 
     getPage = async (page) => {
-        let headers = {
-            'Content-type':'application/json',
-            'authorization': 'Bearer ' + localStorage.getItem('id_token')
-        };
         let res = await axios.get(`/api/v1/event/all${page}`);
         const content = res.data.content;
         const total = res.data.totalPages;
@@ -68,16 +64,12 @@ export default class Events extends Component {
         let nextButton = ((+localStorage.getItem('page') < this.state.totalPages - 1) && (this.state.loaded)) ?
             <button type="button" className="next" onClick={this.handleNextClick}>Next</button> : '';
 
-        this.Auth = new AuthService();
-        let loginButton = (!this.Auth.loggedIn()) ?
-            <button type="button" className="logout" onClick={()=>{window.location.href =('/')}}>Login</button> : '';
-
         return (
             <div>
                 <div className="events-box">
                     <h1>Events</h1>
                     {
-                        this.state.loaded?
+                        this.state.loaded ?
                             <table width="1400" align="center">
                                 <thead>
                                     <tr>
@@ -95,21 +87,19 @@ export default class Events extends Component {
                                                 <td>{content.id}</td>
                                                 <td>{content.name} </td>
                                                 <td>{content.date.replace(/T/g, " ")}</td>
-                                                <td>{content.cityName || 'Loading...'}</td>
+                                                <td>{content.cityName}</td>
                                                 <td>({content.maxMembers}/{content.userIds.length})</td>
                                                 <td>
-                                                <Link to={`/Event/${content.id}`}>
-                                                    <input className="about" type="button" value={"about"}/>
-                                                </Link>
+                                                    <Link to={`/Event/${content.id}`}>
+                                                        <input className="about" type="button" value={"about"}/>
+                                                    </Link>
                                                 </td>
                                             </tr>
                                         </tbody>)}
                             </table>
                             :
                             <table width="1400" align="center">
-                                <div className={"spinner"}>
-                                    <Spinner size={120} spinnerColor={"#2ecc71"} spinnerWidth={2} visible={true} />
-                                </div>
+                                <MySpinner/>
                             </table>
                     }
                     {prevButton}
@@ -118,11 +108,9 @@ export default class Events extends Component {
                 </div>
                 <div className="logout-box">
                     <LogoutButton/>
-                    {loginButton}
+                    <LoginButton/>
                 </div>
-                <div>
-                    {createButton}
-                </div>
+                {createButton}
             </div>
         )
     }

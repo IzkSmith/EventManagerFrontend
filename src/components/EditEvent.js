@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LogoutButton from "./LogoutButton";
+import LogoutButton from "./UserBox";
 import AuthService from "../service/AuthService";
 import axios from "axios";
 

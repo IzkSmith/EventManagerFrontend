@@ -1,9 +1,10 @@
 import React from 'react'
 import {Link, withRouter} from "react-router-dom";
-import LogoutButton from "./LogoutButton";
+import LogoutButton from "./UserBox";
 import axios from 'axios';
-import Spinner from "react-spinner-material";
 import AuthService from "../service/AuthService";
+import MySpinner from "./MySpinner";
+import LoginButton from "./LoginButton";
 
 class Event extends React.Component {
     state = {
@@ -83,8 +84,6 @@ class Event extends React.Component {
         let label = (userIds || []).includes(userId) ? 'Sign out' : 'Sign up';
         let signUpButton = (this.Auth.loggedIn()) ?
             <button className="signup" onClick={this.handleSignup}>{label}</button> : '';
-        let loginButton = (!this.Auth.loggedIn()) ?
-            <button type="button" className="logout" onClick={()=>{window.location.href =('/')}}>Login</button> : '';
 
         return (
             <div>
@@ -99,13 +98,11 @@ class Event extends React.Component {
                             <p className="description" >{this.state.description}</p>
                         </div>
                         :
-                        <div className={"spinner"}>
-                            <Spinner size={120} spinnerColor={"#2ecc71"} spinnerWidth={2} visible={true} />
-                        </div>
+                        <MySpinner/>
                     }
                 </div>
                 <div className="logout-box">
-                    {loginButton}
+                    <LoginButton/>
                     <LogoutButton/>
                 </div>
                 {signUpButton}

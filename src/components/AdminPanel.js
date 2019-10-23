@@ -3,101 +3,80 @@ import LogoutButton from "./UserBox";
 import axios from 'axios';
 import MySpinner from "./MySpinner";
 
-export default class Members extends Component {
+export default class AdminPanel extends Component {
     state = {
-        users: [],
         loaded: false
     };
 
     componentDidMount() {
-        console.log(!localStorage.getItem('event_id'));
-        if (!localStorage.getItem('event_id')) {
-            window.location.href = ('/Events');
-        }
-        this.getEvent( );
+        if(!(localStorage.getItem('roles') || []).includes(1))
+            window.location.href =('/Events');
+        this.getUsers( );
     }
 
-    getEvent = async () => {
+    getUsers = async () => {
         this.setState({loaded:false});
         let headers = {
             'Content-type':'application/json',
             'authorization': 'Bearer ' + localStorage.getItem('id_token')
         };
-        let res = await axios.get(`/api/v1/event/${localStorage.getItem('event_id')}`, { headers: headers});
-
-        const userIds = res.data.userIds;
+        let res = await axios.get(`/api/v1/user/all`, { headers: headers});
         this.setState(res.data);
-        this.setState({users:[]});
-
-        for (let i = 0, len = userIds.length; i < len; i++) {
-            this.getUser(userIds[i], headers, i, len);
-        }
+        this.setState({loaded: true});
     };
 
-    getUser = async (id, headers, i, len) => {
-        let res = await axios.get(`/api/v1/user/${id}`, { headers: headers});
-        this.setState(state => {
-            const users = state.users.concat(res.data);
-            return {users};
-        });
-
-        if ( i === len - 1 ) {
-            this.setState({loaded: true});
-        }
+    handleGrant = (i) => {
+        i.roles = i.roles.includes(2) ? [3] : [3,2];
+        this.changeUser(i);
     };
 
-    handleDelete = (userId) => {
-        const userIds = this.state.userIds;
-        userIds.splice(userIds.indexOf(userId), 1);
-
-        let data = `{
-            "id": ${this.state.id},
-            "name": "${this.state.name}",
-            "date": "${this.state.date}",
-            "cityId": ${this.state.cityId},
-            "maxMembers": ${this.state.maxMembers},
-            "userIds": [${userIds}],
-            "description": "${this.state.description}",
-            "holderId":" ${this.state.holderId}"
-        }`;
-        this.deleteUser(data);
-    };
-
-    deleteUser = async (data) => {
-        await axios.post(`/api/v1/event`, data,
+    changeUser = async (data) => {
+        await axios.post(`/api/v1/user`, data,
             { headers: { 'Content-type':'application/json','authorization': 'Bearer '
                         + localStorage.getItem('id_token')}});
         this.setState({loaded:true});
-        this.getEvent();
+        this.getUsers();
     };
 
     render() {
         console.log(this.state);
+        let role;
         return (
             <div>
                 <div className="events-box">
-                    <h1>Members of event #{localStorage.getItem('event_id')}</h1>
-                    <p>total :{(this.state.userIds || '').length}</p>
+                    <h1>Users</h1>
+                    <p>total : {this.state.numberOfElements}</p>
                     {
                         this.state.loaded?
                             <table width="700" align="center">
                                 <thead>
                                 <tr>
                                     <th>Name</th>
+                                    <th>Username</th>
+                                    <th>Role</th>
                                     <th/>
                                 </tr>
                                 </thead>
-                                {this.state.users.map(item =>
+                                {this.state.content.map(item =>
                                     <tbody>
                                     <tr align="center">
                                         <td>{item.firstName} {item.lastName}</td>
+                                        <td>{item.username}</td>
                                         <td>
+                                            {
+                                                role =item.roles.includes(1) ?
+                                            'Admin' :
+                                            item.roles.includes(2)? 'Holder' : 'Member'}
+                                        </td>
+                                        {role === 'Admin'? <p/> :
+                                            <td>
                                                 <input className="about"
                                                        type="button"
-                                                       value={"delete"}
-                                                       onClick={() => this.handleDelete(item.id)}
+                                                       value={ role === 'Holder'? 'take back' : 'grant Holder'}
+                                                       onClick={() => this.handleGrant(item)}
                                                 />
-                                        </td>
+                                            </td>
+                                        }
                                     </tr>
                                     </tbody>)}
                             </table>

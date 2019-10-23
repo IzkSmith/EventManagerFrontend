@@ -8,6 +8,7 @@ import Signup from "./components/Signup";
 import Event from "./components/Event";
 import EditEvent from "./components/EditEvent";
 import Members from "./components/Members";
+import AdminPanel from "./components/AdminPanel";
 
 export default function App (){
     return (
@@ -16,6 +17,9 @@ export default function App (){
                     <Switch>
                         <Route path="/Members">
                             <Members />
+                        </Route>
+                        <Route path="/AdminPanel">
+                            <AdminPanel />
                         </Route>
                         <Route path="/EditEvent">
                             <EditEvent />

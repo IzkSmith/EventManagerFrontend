@@ -63,6 +63,7 @@ export default class Login extends Component {
                         'width':305
                         ,onAuth: user => {
                             console.log(user);
+                            localStorage.setItem('avatar', user.photo_rec);
                             this.Auth.login(user.uid, user.uid)
                                 .then(res => {
                                     window.location.href = '/Events';
