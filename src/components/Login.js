@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AuthService from '../service/AuthService';
 import {Link} from "react-router-dom";
 import VK, { Auth } from "react-vk";
+import GoogleLogin from "react-google-login";
 
 export default class Login extends Component {
     state = {
@@ -35,6 +36,21 @@ export default class Login extends Component {
     handleChange = (e) => this.setState({[e.target.name]: e.target.value});
 
     render() {
+        const responseGoogle = (response) => {
+            console.log(response);
+            let user = response.profileObj;
+            localStorage.setItem('avatar', user.imageUrl);
+            this.Auth.login(user.googleId, user.googleId)
+                .then(res => {
+                    window.location.href = '/Events';
+                })
+                .catch(err => {
+                    this.Auth.newUser(user.familyName || '', user.givenName, user.googleId, user.email, user.googleId)
+                        .then(res => {this.login(user.googleId, user.googleId);
+                        })
+                })
+        };
+
         return (
             <div className="box" >
                 <h1>Login</h1>
@@ -60,7 +76,7 @@ export default class Login extends Component {
                 </form>
                 <VK apiId={7178797}>
                     <Auth options={{
-                        'width':305
+                        'width':300
                         ,onAuth: user => {
                             console.log(user);
                             localStorage.setItem('avatar', user.photo_rec);
@@ -74,6 +90,16 @@ export default class Login extends Component {
                                         })
                                 })
                         }}}/>
+                    <GoogleLogin
+                        clientId="535820474226-ddstlsfdcl1ogprtqj6vt47emafd4vpj.apps.googleusercontent.com"
+                        render={renderProps => (
+                            <button className={"btn"} onClick={renderProps.onClick} disabled={renderProps.disabled}> Login with google</button>
+                        )}
+                        buttonText="Login"
+                        onSuccess={responseGoogle}
+                        onFailure={responseGoogle}
+                        cookiePolicy={'single_host_origin'}
+                    />
                 </VK>
             </div>
         );
