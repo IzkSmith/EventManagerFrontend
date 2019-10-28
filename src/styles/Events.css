@@ -1,0 +1,77 @@
+.events-box th {
+    border-bottom-style: solid;
+    border-color: #2ecc71;
+}
+
+.events-box table {
+    border-style: solid;
+    border-color: #2ecc71;
+}
+
+.events-box {
+    color: white;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: black;
+    text-align: center;
+    border-radius: 12px;
+    opacity: 0.9;
+}
+
+.events-box h1 {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 40px;
+    border-bottom: 6px solid #2ecc71;
+    margin-bottom: 25px;
+    padding: 13px;
+}
+
+.next {
+    position: absolute;
+    left: 51%;
+    top: 90%;
+    background: black;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 15px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    cursor: pointer;
+}
+
+.prev {
+    position: absolute;
+    left: 42%;
+    top: 90%;
+    background: black;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 15px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    cursor: pointer;
+}
+
+.about {
+    width: 70%;
+    background: none;
+    border: 2px solid #2ecc71;
+    color: white;
+    padding: 5px;
+    margin: 4px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 24px;
+}
+

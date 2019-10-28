@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import LogoutButton from "./UserBox";
+import LogoutButton from "../UserBox";
 import axios from 'axios';
-import MySpinner from "./MySpinner";
+import MySpinner from "../MySpinner";
 
 export default class AdminPanel extends Component {
     state = {
@@ -84,7 +84,7 @@ export default class AdminPanel extends Component {
                             <MySpinner/>
                     }
                 </div>
-                <div className="logout-box">
+                <div className="userBox">
                     <LogoutButton/>
                 </div>
             </div>

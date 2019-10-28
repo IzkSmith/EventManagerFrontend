@@ -1,14 +1,14 @@
 import React from 'react';
-import './App.css';
+import './styles/App.css';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import Login from "./components/Login";
-import Events from "./components/Events";
-import NewEvent from "./components/NewEvent";
-import Signup from "./components/Signup";
-import Event from "./components/Event";
-import EditEvent from "./components/EditEvent";
-import Members from "./components/Members";
-import AdminPanel from "./components/AdminPanel";
+import Login from "./components/Pages/Login";
+import Events from "./components/Pages/Events";
+import NewEvent from "./components/Pages/NewEvent";
+import Signup from "./components/Pages/Signup";
+import Event from "./components/Pages/Event";
+import EditEvent from "./components/Pages/EditEvent";
+import Members from "./components/Pages/Members";
+import AdminPanel from "./components/Pages/AdminPanel";
 
 export default function App (){
     return (

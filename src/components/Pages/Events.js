@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import '../../styles/Events.css';
 import {Link} from "react-router-dom";
-import UserBox from "./UserBox";
+import UserBox from "../UserBox";
 import axios from 'axios';
-import MySpinner from "./MySpinner";
-import LoginButton from "./LoginButton";
+import MySpinner from "../MySpinner";
+import LoginButton from "../LoginButton";
 
 export default class Events extends Component {
     state = {
@@ -118,7 +119,7 @@ export default class Events extends Component {
                     <p>Page : {+localStorage.getItem('page') + 1} of {this.state.totalPages}</p>
                     {nextButton}
                 </div>
-                <div className="logout-box">
+                <div className="userBox">
                     <UserBox/>
                     <LoginButton/>
                 </div>

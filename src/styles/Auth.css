@@ -1,0 +1,66 @@
+.loginBox {
+    color: white;
+    width: 300px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #191919;
+    text-align: center;
+    opacity: 0.95;
+    border-radius: 12px;
+}
+
+.loginBox h1 {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.loginBox input[type="text"],
+.loginBox input[type="password"] {
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 15px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+.loginBox input[type="text"]:focus,
+.loginBox input[type="password"]:focus {
+    width: 280px;
+    border-color: #2ecc71;
+}
+
+.loginBox input[type="submit"] {
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 15px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.externalAuth {
+    border-color:black;
+    border: none;
+    cursor: pointer;
+    padding: 0px 0px;
+}
+
+.externalAuth:hover {
+    transition: 0.4s;
+    opacity: 0.70;
+}

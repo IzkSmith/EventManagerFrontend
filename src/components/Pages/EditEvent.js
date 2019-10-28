@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import LogoutButton from "./UserBox";
-import AuthService from "../service/AuthService";
+import LogoutButton from "../UserBox";
+import AuthService from "../../service/AuthService";
 import axios from "axios";
 
 export default class EditEvent extends Component {
@@ -54,7 +54,7 @@ export default class EditEvent extends Component {
     render() {
         return (
             <div>
-                <div className="login-box">
+                <div className="formBox">
                     <h1>Edit event #{this.state.id}</h1>
                     <form onSubmit={this.handleFormSubmit}>
                         <input className="textbox"
@@ -104,7 +104,7 @@ export default class EditEvent extends Component {
                         <input type="submit" className="btn" value="submit" />
                     </form>
                 </div>
-                <div className="logout-box">
+                <div className="userBox">
                     <p><i className="fas fa-user"/> {localStorage.getItem('username')}</p>
                     <LogoutButton/>
                 </div>

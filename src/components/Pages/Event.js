@@ -1,10 +1,10 @@
 import React from 'react'
 import {Link, withRouter} from "react-router-dom";
-import LogoutButton from "./UserBox";
+import LogoutButton from "../UserBox";
 import axios from 'axios';
-import AuthService from "../service/AuthService";
-import MySpinner from "./MySpinner";
-import LoginButton from "./LoginButton";
+import AuthService from "../../service/AuthService";
+import MySpinner from "../MySpinner";
+import LoginButton from "../LoginButton";
 
 class Event extends React.Component {
     state = {
@@ -83,7 +83,7 @@ class Event extends React.Component {
         this.Auth = new AuthService();
         let label = (userIds || []).includes(userId) ? 'Sign out' : 'Sign up';
         let signUpButton = (this.Auth.loggedIn()) ?
-            <button type={"button"} className="signup" onClick={this.handleSignup}>{label}</button> : '';
+            <button type={"button"} className="signupButton" onClick={this.handleSignup}>{label}</button> : '';
 
         return (
             <div>
@@ -101,7 +101,7 @@ class Event extends React.Component {
                         <MySpinner/>
                     }
                 </div>
-                <div className="logout-box">
+                <div className="userBox">
                     <LoginButton/>
                     <LogoutButton/>
                 </div>

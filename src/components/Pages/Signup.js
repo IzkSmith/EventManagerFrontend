@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AuthService from "../service/AuthService";
+import AuthService from "../../service/AuthService";
 
 export default class Signup extends Component {
     state = {
@@ -34,7 +34,7 @@ export default class Signup extends Component {
 
         return (
             <div>
-                <div className="login-box">
+                <div className="formBox">
                     <h1>Registration Form</h1>
                     <form onSubmit={this.handleFormSubmit}>
                         <input className="textbox"

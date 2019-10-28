@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import AuthService from '../service/AuthService';
+import '../../styles/Auth.css';
 import {Link} from "react-router-dom";
 import VK, { Auth } from "react-vk";
 import GoogleLogin from "react-google-login";
+import AuthService from "../../service/AuthService";
 
 export default class Login extends Component {
     state = {
@@ -53,7 +54,7 @@ export default class Login extends Component {
         };
 
         return (
-            <div className="box" >
+            <div className="loginBox" >
                 <h1>Login</h1>
                 <form onSubmit={this.handleFormSubmit}>
                     <input
@@ -76,8 +77,8 @@ export default class Login extends Component {
                 </form>
                 <VK apiId={7178797}>
                     {!this.state.vk ?
-                        <button className={"google"} onClick={() => {this.setState({vk: true})}}>
-                            <img src={require("../images/vk.png")}/>
+                        <button className={"externalAuth"} onClick={() => {this.setState({vk: true})}}>
+                            <img src={require("../../images/vk.png")}/>
                         </button>
                         :
                         <Auth options={{
@@ -103,8 +104,8 @@ export default class Login extends Component {
                     <GoogleLogin
                         clientId="535820474226-ddstlsfdcl1ogprtqj6vt47emafd4vpj.apps.googleusercontent.com"
                         render={renderProps => (
-                            <button className={"google"} onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                                <img src={require("../images/google.png")}/>
+                            <button className={"externalAuth"} onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                                <img src={require("../../images/google.png")}/>
                             </button>
                         )}
                         buttonText="Login"
