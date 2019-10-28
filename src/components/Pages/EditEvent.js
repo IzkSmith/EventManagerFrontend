@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LogoutButton from "../UserBox";
+import LogoutButton from "../SideNav";
 import AuthService from "../../service/AuthService";
 import axios from "axios";
 
@@ -104,7 +104,7 @@ export default class EditEvent extends Component {
                         <input type="submit" className="btn" value="submit" />
                     </form>
                 </div>
-                <div className="userBox">
+                <div className="sideNav">
                     <p><i className="fas fa-user"/> {localStorage.getItem('username')}</p>
                     <LogoutButton/>
                 </div>

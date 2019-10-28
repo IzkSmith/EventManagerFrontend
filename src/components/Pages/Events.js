@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../styles/Events.css';
 import {Link} from "react-router-dom";
-import UserBox from "../UserBox";
+import SideNav from "../SideNav";
 import axios from 'axios';
 import MySpinner from "../MySpinner";
 import LoginButton from "../LoginButton";
@@ -63,7 +63,7 @@ export default class Events extends Component {
         console.log(this.state);
         let createButton = ( (localStorage.getItem('roles') || '').includes(2) ) ?
                 <Link to="/NewEvent">
-                    <input className="create" type="submit" name="" value="Create new event"/>
+                    <input className="leftButton" type="submit" name="" value="Create new event"/>
                 </Link>
             : '';
 
@@ -76,7 +76,7 @@ export default class Events extends Component {
         return (
             <div>
                 <div className="events-box">
-                    <h1>Events</h1>
+                    <h1>Upcoming Events</h1>
                     <p>Events on the page <select name="pageSize" onChange={this.handleChange}>
                             <option value={10} selected>10</option>
                             <option value={15}>15</option>
@@ -119,9 +119,8 @@ export default class Events extends Component {
                     <p>Page : {+localStorage.getItem('page') + 1} of {this.state.totalPages}</p>
                     {nextButton}
                 </div>
-                <div className="userBox">
-                    <UserBox/>
-                    <LoginButton/>
+                <div className="sideNav">
+                    <SideNav/>
                 </div>
                 {createButton}
             </div>

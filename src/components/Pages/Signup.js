@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AuthService from "../../service/AuthService";
+import '../../styles/Form.css';
 
 export default class Signup extends Component {
     state = {
@@ -9,7 +10,7 @@ export default class Signup extends Component {
 
     componentDidMount() {
         this.Auth = new AuthService();
-        if (this.Auth.loggedIn()) { window.location.href =('/Events'); }
+        if (this.Auth.isLoggedIn()) { window.location.href =('/Events'); }
     }
 
     handleFormSubmit = (e) => {

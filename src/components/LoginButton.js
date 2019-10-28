@@ -4,10 +4,10 @@ import AuthService from '../service/AuthService';
 export default class LoginButton extends Component {
     render() {
         this.Auth = new AuthService();
-        let loginButton = (!this.Auth.loggedIn()) ?
+        let loginButton = (!this.Auth.isLoggedIn()) ?
             <button type="button" className="logout" onClick={()=>{window.location.href =('/Auth')}}>Login</button> : '';
         return (
-            <div >
+            <div className={"sideNav"} >
                 {loginButton}
             </div>
         );

@@ -76,7 +76,7 @@ export default class AuthService {
             'Content-Type': 'application/json'
         };
 
-        if (this.loggedIn()) {
+        if (this.isLoggedIn()) {
             headers['Authorization'] = 'Bearer ' + this.getToken()
         }
 
@@ -98,7 +98,7 @@ export default class AuthService {
         }
     };
 
-    loggedIn = () => {
+    isLoggedIn = () => {
         // Checks if there is a saved token and it's still valid
         const token = this.getToken();
         return !!token && !this.isTokenExpired(token) // handwaiving here

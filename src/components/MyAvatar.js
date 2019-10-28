@@ -14,11 +14,10 @@ const useStyles = makeStyles({
 export default function ImageAvatars() {
     const classes = useStyles();
     let avatar = (!localStorage.getItem('avatar')) ?
-        <Avatar alt=" "
-                src="https://giantbomb1.cbsistatic.com/uploads/square_medium/22/220001/2573994-4705128555-Faceb.jpg"
+        <Avatar src="https://giantbomb1.cbsistatic.com/uploads/square_medium/22/220001/2573994-4705128555-Faceb.jpg"
                 className={classes.bigAvatar}
-        /> :
-        <Avatar alt=" " src={localStorage.getItem('avatar')} className={classes.bigAvatar} />;
+        />
+        : <Avatar  src={localStorage.getItem('avatar')} className={classes.bigAvatar} />;
 
     return (
         <Grid container justify="center" alignItems="center">

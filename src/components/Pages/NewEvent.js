@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LogoutButton from "../UserBox";
+import LogoutButton from "../SideNav";
 import AuthService from "../../service/AuthService";
 import axios from "axios";
 
@@ -39,18 +39,16 @@ export default class NewEvent extends Component {
         console.log(this.state.content);
         return (
             <div>
-                <div className="formBox">
+                <div>
                     <h1>Create new Event</h1>
                     <form onSubmit={this.handleFormSubmit}>
-                        <input className="textbox"
-                               name="name"
+                        <input name="name"
                                type="text"
                                maxLength={90}
                                placeholder="Event name"
                                onChange={this.handleChange}
                         />
-                        <input className="textbox"
-                               name="date"
+                        <input name="date"
                                type="datetime-local"
                                min="2019-10-14T00:00"
                                max="2020-12-30T00:00"
@@ -64,8 +62,7 @@ export default class NewEvent extends Component {
                                 <option>Select city</option>
                             </select >
                         </p>
-                        <input className="textbox"
-                               name="maxMembers"
+                        <input name="maxMembers"
                                type="number"
                                min="5"
                                max="200000000"
@@ -84,7 +81,7 @@ export default class NewEvent extends Component {
                         <input type="submit" className="btn" value="submit"/>
                     </form>
                 </div>
-                <div className="userBox">
+                <div className="sideNav">
                     <p><i className="fas fa-user"/> {localStorage.getItem('username')}</p>
                     <LogoutButton />
                 </div>

@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import VK, { Auth } from "react-vk";
 import GoogleLogin from "react-google-login";
 import AuthService from "../../service/AuthService";
+import SideNav from "../SideNav";
 
 export default class Login extends Component {
     state = {
@@ -14,7 +15,7 @@ export default class Login extends Component {
 
     componentDidMount(){
         this.Auth = new AuthService();
-        if (this.Auth.loggedIn()) window.location.href =('/Events');
+        if (this.Auth.isLoggedIn()) window.location.href =('/Events');
     }
 
     handleFormSubmit = (e) => {
@@ -114,6 +115,7 @@ export default class Login extends Component {
                         cookiePolicy={'single_host_origin'}
                     />
                 </VK>
+                <p><a href={"/Events"}>or proceed as guest</a></p>
             </div>
         );
     }

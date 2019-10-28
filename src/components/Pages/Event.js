@@ -1,10 +1,11 @@
 import React from 'react'
 import {Link, withRouter} from "react-router-dom";
-import LogoutButton from "../UserBox";
+import SideNav from "../SideNav";
 import axios from 'axios';
 import AuthService from "../../service/AuthService";
 import MySpinner from "../MySpinner";
 import LoginButton from "../LoginButton";
+import '../../styles/Event.css';
 
 class Event extends React.Component {
     state = {
@@ -69,7 +70,7 @@ class Event extends React.Component {
 
             editButton =
                 <Link to="/EditEvent">
-                    <input className="create" type="submit" name="" value="Edit this event"/>
+                    <input className="leftButton" type="submit" name="" value="Edit this event"/>
                 </Link>;
 
             if ((userIds || '').length>0) {
@@ -82,28 +83,27 @@ class Event extends React.Component {
 
         this.Auth = new AuthService();
         let label = (userIds || []).includes(userId) ? 'Sign out' : 'Sign up';
-        let signUpButton = (this.Auth.loggedIn()) ?
+        let signUpButton = (this.Auth.isLoggedIn()) ?
             <button type={"button"} className="signupButton" onClick={this.handleSignup}>{label}</button> : '';
 
         return (
             <div>
-                <div className="events-box">
+                <div className="main">
                     {this.state.loaded?
                         <div>
-                            <h1>{this.state.name}</h1>
+                            <h2>{this.state.name}</h2>
                             <p>Date : {(this.state.date||'').replace(/T/g, " ")}</p>
                             <p>City : {this.state.cityName}</p>
                             <p>Members ( Max : {this.state.maxMembers} / Current : {(userIds || '').length}) </p>
                             <h3>Description</h3>
-                            <p className="description" >{this.state.description}</p>
+                            <p>{this.state.description}</p>
                         </div>
                         :
                         <MySpinner/>
                     }
                 </div>
-                <div className="userBox">
-                    <LoginButton/>
-                    <LogoutButton/>
+                <div className="sideNav">
+                    <SideNav/>
                 </div>
                 {signUpButton}
                 {editButton}

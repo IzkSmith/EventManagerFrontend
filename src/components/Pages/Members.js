@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LogoutButton from "../UserBox";
+import LogoutButton from "../SideNav";
 import axios from 'axios';
 import MySpinner from "../MySpinner";
 
@@ -105,7 +105,7 @@ export default class Members extends Component {
                             <MySpinner/>
                     }
                 </div>
-                <div className="userBox">
+                <div className="sideNav">
                     <p><i className="fas fa-user"/> {localStorage.getItem('firstName')} {localStorage.getItem('lastName')}</p>
                     <LogoutButton/>
                 </div>
