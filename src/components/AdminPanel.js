@@ -85,7 +85,6 @@ export default class AdminPanel extends Component {
                     }
                 </div>
                 <div className="logout-box">
-                    <p><i className="fas fa-user"/> {localStorage.getItem('firstName')} {localStorage.getItem('lastName')}</p>
                     <LogoutButton/>
                 </div>
             </div>

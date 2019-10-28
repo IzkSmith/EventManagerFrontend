@@ -18,7 +18,7 @@ export default class Signup extends Component {
         if (this.state.password === this.state.rPassword) {
             this.Auth.newUser(this.state.firstName, this.state.lastName, this.state.username, this.state.email, this.state.password)
                 .then(res => {
-                    window.location.href = '/';
+                    window.location.href = '/Auth';
                 })
                 .catch(err => {
                     alert(err);

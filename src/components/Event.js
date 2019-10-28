@@ -83,7 +83,7 @@ class Event extends React.Component {
         this.Auth = new AuthService();
         let label = (userIds || []).includes(userId) ? 'Sign out' : 'Sign up';
         let signUpButton = (this.Auth.loggedIn()) ?
-            <button className="signup" onClick={this.handleSignup}>{label}</button> : '';
+            <button type={"button"} className="signup" onClick={this.handleSignup}>{label}</button> : '';
 
         return (
             <div>

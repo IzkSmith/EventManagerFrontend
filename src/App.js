@@ -36,7 +36,7 @@ export default function App (){
                         <Route path="/Signup">
                             <Signup />
                         </Route>
-                        <Route path="/">
+                        <Route path="/Auth">
                             <Login />
                         </Route>
                     </Switch>

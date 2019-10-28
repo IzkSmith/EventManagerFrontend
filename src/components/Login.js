@@ -6,6 +6,7 @@ import GoogleLogin from "react-google-login";
 
 export default class Login extends Component {
     state = {
+        vk: false,
         username : '',
         password : ''
     };
@@ -72,28 +73,39 @@ export default class Login extends Component {
                         type="submit"
                     />
                     <p>don't have an account yet? <Link to="/Signup">Sign up</Link></p>
-                    <p>or login with VK</p>
                 </form>
                 <VK apiId={7178797}>
-                    <Auth options={{
-                        'width':300
-                        ,onAuth: user => {
-                            console.log(user);
-                            localStorage.setItem('avatar', user.photo_rec);
-                            this.Auth.login(user.uid, user.uid)
-                                .then(res => {
-                                    window.location.href = '/Events';
-                                })
-                                .catch(err => {
-                                    this.Auth.newUser(user.first_name, user.last_name, user.uid, user.uid+'@gmail.com', user.uid)
-                                        .then(res => {this.login(user.uid, user.uid);
-                                        })
-                                })
-                        }}}/>
+                    {!this.state.vk ?
+                        <button className={"google"} onClick={() => {this.setState({vk: true})}}>
+                            <img src={require("../images/vk.png")}/>
+                        </button>
+                        :
+                        <Auth options={{
+                            'width': 300
+                            , onAuth: user => {
+                                console.log(user);
+                                localStorage.setItem('avatar', user.photo_rec);
+                                this.Auth.login(user.uid, user.uid)
+                                    .then(res => {
+                                        window.location.href = '/Events';
+                                    })
+                                    .catch(err => {
+                                        this.Auth.newUser(user.first_name, user.last_name, user.uid, null, user.uid)
+                                            .then(res => {
+                                                this.login(user.uid, user.uid);
+                                            })
+                                    })
+                            }
+                        }}/>
+
+                    }
+                    <p/>
                     <GoogleLogin
                         clientId="535820474226-ddstlsfdcl1ogprtqj6vt47emafd4vpj.apps.googleusercontent.com"
                         render={renderProps => (
-                            <button className={"btn"} onClick={renderProps.onClick} disabled={renderProps.disabled}> Login with google</button>
+                            <button className={"google"} onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                                <img src={require("../images/google.png")}/>
+                            </button>
                         )}
                         buttonText="Login"
                         onSuccess={responseGoogle}

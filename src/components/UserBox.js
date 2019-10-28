@@ -8,7 +8,7 @@ const Auth = new AuthService();
 class UserBox extends Component {
     handleLogout(){
         Auth.logout();
-        window.location.href = '/';
+        window.location.reload();
     }
 
     render() {
@@ -16,7 +16,6 @@ class UserBox extends Component {
             <button type="button" className = "admin" onClick={() => {window.location.href = '/AdminPanel'}}>
                 Admin Panel
             </button> : '';
-
         return (
             <div >
                 <p>
