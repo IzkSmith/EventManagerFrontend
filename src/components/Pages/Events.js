@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 import SideNav from "../SideNav";
 import axios from 'axios';
 import MySpinner from "../MySpinner";
-import LoginButton from "../LoginButton";
 
 export default class Events extends Component {
     state = {

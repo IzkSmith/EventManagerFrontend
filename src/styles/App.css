@@ -1,6 +1,6 @@
 body {
   font-family: sans-serif;
-  background-color: ivory;
+  background-color: #edeef0;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
@@ -101,9 +101,21 @@ button[type="button"]:hover{
   padding: 0px 10px;
 }
 
+.main h3 {
+  border-bottom: 2px solid grey;
+}
+
+.main p {
+  opacity: 0.8;
+}
+
 .contacts p {
   position:absolute;
   bottom: 20px;
   left:0;
   color: grey;
+}
+
+.t {
+  all: unset;
 }

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import AuthService from '../service/AuthService';
-import withAuth from "../service/WithAuth";
 import MyAvatar from "./MyAvatar";
-import LoginButton from "./LoginButton";
 
 const Auth = new AuthService();
 
@@ -21,6 +19,7 @@ export default class SideNav extends Component {
                 {adminPanel}
                 <a href={"/Events"}>Home</a>
                 <a href={"/Events"}>Events</a>
+                <a href={"/Account"}>Account</a>
                 <a onClick={this.handleLogout.bind(this)}>Logout</a>
             </div>
             :

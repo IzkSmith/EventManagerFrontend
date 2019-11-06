@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LogoutButton from "../SideNav";
+import SideNav from "../SideNav";
 import axios from 'axios';
 import MySpinner from "../MySpinner";
 
@@ -25,9 +25,9 @@ export default class AdminPanel extends Component {
         this.setState({loaded: true});
     };
 
-    handleGrant = (i) => {
-        i.roles = i.roles.includes(2) ? [3] : [3,2];
-        this.changeUser(i);
+    handleGrant = (user) => {
+        user.roles = user.roles.includes(2) ? [3] : [3,2];
+        this.changeUser(user);
     };
 
     changeUser = async (data) => {
@@ -36,6 +36,11 @@ export default class AdminPanel extends Component {
                         + localStorage.getItem('id_token')}});
         this.setState({loaded:true});
         this.getUsers();
+    };
+
+    handleDenyRequest = (user) => {
+        user.wantsNewRole = false;
+        this.changeUser(user);
     };
 
     render() {
@@ -54,6 +59,7 @@ export default class AdminPanel extends Component {
                                     <th>Name</th>
                                     <th>Username</th>
                                     <th>Role</th>
+                                    <th/>
                                     <th/>
                                 </tr>
                                 </thead>
@@ -77,6 +83,9 @@ export default class AdminPanel extends Component {
                                                 />
                                             </td>
                                         }
+                                        <td>{
+                                            item.wantsNewRole=== true? <p>Requested <button type="button" className="about" onClick={()=>{this.handleDenyRequest(item)}}>deny</button></p>: ''
+                                        }</td>
                                     </tr>
                                     </tbody>)}
                             </table>
@@ -85,7 +94,7 @@ export default class AdminPanel extends Component {
                     }
                 </div>
                 <div className="sideNav">
-                    <LogoutButton/>
+                    <SideNav/>
                 </div>
             </div>
         )

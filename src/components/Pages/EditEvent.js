@@ -62,7 +62,6 @@ export default class EditEvent extends Component {
                                type="text"
                                maxLength={90}
                                value={this.state.name}
-                               placeholder="Event name"
                                onChange={this.handleChange}
                         />
                         <input className="textbox"
@@ -70,7 +69,6 @@ export default class EditEvent extends Component {
                                value={(this.state.date || '').replace(/ /g, "T")}
                                type="datetime-local"
                                min="2019-10-14T00:00" max="2020-12-30T00:00"
-                               placeholder="Date"
                                onChange={this.handleChange}
                         />
                         <p>City :
@@ -88,7 +86,6 @@ export default class EditEvent extends Component {
                                value={this.state.maxMembers}
                                min="5"
                                max="200000000"
-                               placeholder="Max members"
                                onChange={this.handleChange}
                         />
                         <textarea className="textbox"
@@ -97,12 +94,12 @@ export default class EditEvent extends Component {
                                   maxLength={2048}
                                   value={this.state.description}
                                   name="description"
-                                  placeholder="Description"
                                   onChange={this.handleChange}
                         />
 
                         <input type="submit" className="btn" value="submit" />
                     </form>
+
                 </div>
                 <div className="sideNav">
                     <p><i className="fas fa-user"/> {localStorage.getItem('username')}</p>

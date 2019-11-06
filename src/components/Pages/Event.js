@@ -4,7 +4,6 @@ import SideNav from "../SideNav";
 import axios from 'axios';
 import AuthService from "../../service/AuthService";
 import MySpinner from "../MySpinner";
-import LoginButton from "../LoginButton";
 import '../../styles/Event.css';
 
 class Event extends React.Component {

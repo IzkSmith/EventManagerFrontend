@@ -9,12 +9,16 @@ import Event from "./components/Pages/Event";
 import EditEvent from "./components/Pages/EditEvent";
 import Members from "./components/Pages/Members";
 import AdminPanel from "./components/Pages/AdminPanel";
+import Account from "./components/Pages/Account";
 
 export default function App (){
     return (
             <Router>
                 <div>
                     <Switch>
+                        <Route path="/Account">
+                            <Account />
+                        </Route>
                         <Route path="/Members">
                             <Members />
                         </Route>
@@ -38,6 +42,9 @@ export default function App (){
                         </Route>
                         <Route path="/Auth">
                             <Login />
+                        </Route>
+                        <Route path="/">
+                            <Events />
                         </Route>
                     </Switch>
                 </div>
