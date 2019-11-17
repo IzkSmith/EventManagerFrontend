@@ -42,7 +42,8 @@ class Event extends React.Component {
                 "maxMembers": ${this.state.maxMembers},
                 "userIds": [${userIds}],
                 "description": "${this.state.description}",
-                "holderId":" ${this.state.holderId}"
+                "holderId":${this.state.holderId},
+                "contacts":"${this.state.contacts}"
             }`;
 
             this.postUser(data);
@@ -96,6 +97,7 @@ class Event extends React.Component {
                             <p>Members ( Max : {this.state.maxMembers} / Current : {(userIds || '').length}) </p>
                             <h3>Description</h3>
                             <p>{this.state.description}</p>
+                            <div className={'holder-contacts'}><p>Holder contacts: {this.state.contacts}</p></div>
                         </div>
                         :
                         <MySpinner/>

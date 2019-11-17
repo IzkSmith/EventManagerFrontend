@@ -12,7 +12,7 @@ export default class SideNav extends Component {
 
     render() {
         let adminPanel = (localStorage.getItem('roles') || []).includes(1)?
-            <a href={"/AdminPanel"}>AdminPanel</a> : '';
+            <a href={"/Admin"}>AdminPanel</a> : '';
         let optionalContent = Auth.isLoggedIn() ?
             <div>
                 <h2>{localStorage.getItem('firstName')} {localStorage.getItem('lastName')}</h2>

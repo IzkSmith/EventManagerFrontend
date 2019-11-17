@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AuthService from "../../service/AuthService";
 import '../../styles/Form.css';
+import axios from "axios";
 
 export default class Signup extends Component {
     state = {
@@ -30,6 +31,7 @@ export default class Signup extends Component {
     handleChange = (e) => this.setState({[e.target.name]: e.target.value});
 
     render() {
+        console.log(this.state);
         let passwordsError = (this.state.password!==this.state.rPassword)?
             <p style={{color: 'red', margin: 5}}>Passwords don't match</p>: '';
 

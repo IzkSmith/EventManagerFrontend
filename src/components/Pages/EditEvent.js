@@ -39,8 +39,8 @@ export default class EditEvent extends Component {
     handleFormSubmit = (e) => {
         this.Auth = new AuthService();
         e.preventDefault();
-        this.Auth.editEvent(this.state.id, this.state.name, this.state.date, this.state.cityId,
-            this.state.maxMembers, this.state.description, localStorage.getItem('user_id'))
+        this.Auth.editEvent(this.state.id, this.state.name, this.state.date, this.state.cityId, this.state.maxMembers,
+            this.state.description, localStorage.getItem('user_id'), this.state.contacts, this.state.userIds)
             .then(res => {
                 window.location.href = '/Events';
             })
@@ -52,6 +52,7 @@ export default class EditEvent extends Component {
     handleChange = (e) => this.setState({[e.target.name]: e.target.value});
 
     render() {
+        console.log(this.state)
         return (
             <div>
                 <div className="formBox">
@@ -95,6 +96,13 @@ export default class EditEvent extends Component {
                                   value={this.state.description}
                                   name="description"
                                   onChange={this.handleChange}
+                        />
+                        <input className="textbox"
+                               name="contacts"
+                               type="text"
+                               maxLength={90}
+                               value={this.state.contacts}
+                               onChange={this.handleChange}
                         />
 
                         <input type="submit" className="btn" value="submit" />

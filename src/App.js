@@ -22,7 +22,7 @@ export default function App (){
                         <Route path="/Members">
                             <Members />
                         </Route>
-                        <Route path="/AdminPanel">
+                        <Route path="/Admin">
                             <AdminPanel />
                         </Route>
                         <Route path="/EditEvent">

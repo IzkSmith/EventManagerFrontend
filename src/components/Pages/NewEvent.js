@@ -24,7 +24,7 @@ export default class NewEvent extends Component {
         this.Auth = new AuthService();
         e.preventDefault();
         this.Auth.newEvent(this.state.name, this.state.date, this.state.cityId,
-            this.state.maxMembers, this.state.description, localStorage.getItem('user_id'))
+            this.state.maxMembers, this.state.description, localStorage.getItem('user_id'), this.state.contacts)
             .then(res => {
                 window.location.href = '/Events';
             })
@@ -39,16 +39,18 @@ export default class NewEvent extends Component {
         console.log(this.state.content);
         return (
             <div>
-                <div>
+                <div className="formBox">
                     <h1>Create new Event</h1>
                     <form onSubmit={this.handleFormSubmit}>
-                        <input name="name"
+                        <input className="textbox"
+                                name="name"
                                type="text"
                                maxLength={90}
                                placeholder="Event name"
                                onChange={this.handleChange}
                         />
-                        <input name="date"
+                        <input className="textbox"
+                               name="date"
                                type="datetime-local"
                                min="2019-10-14T00:00"
                                max="2020-12-30T00:00"
@@ -62,7 +64,8 @@ export default class NewEvent extends Component {
                                 <option>Select city</option>
                             </select >
                         </p>
-                        <input name="maxMembers"
+                        <input className="textbox"
+                               name="maxMembers"
                                type="number"
                                min="5"
                                max="200000000"
@@ -76,6 +79,13 @@ export default class NewEvent extends Component {
                                   name="description"
                                   placeholder="Description"
                                   onChange={this.handleChange}
+                        />
+                        <input className="textbox"
+                               name="contacts"
+                               type="text"
+                               maxLength={90}
+                               placeholder="Contacts"
+                               onChange={this.handleChange}
                         />
 
                         <input type="submit" className="btn" value="submit"/>

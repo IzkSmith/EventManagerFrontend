@@ -2,7 +2,7 @@ import decode from 'jwt-decode';
 
 export default class AuthService {
 
-    newEvent = (name, date, cityId, maxMembers, description, holderId) => {
+    newEvent = (name, date, cityId, maxMembers, description, holderId, contacts) => {
         return this.fetch(`/api/v1/event`, {
             method: 'POST',
             body: JSON.stringify({
@@ -11,14 +11,15 @@ export default class AuthService {
                 cityId,
                 maxMembers,
                 description,
-                holderId
+                holderId,
+                contacts
             })
         }).then(res => {
             return Promise.resolve(res);
         })
     };
 
-    editEvent = (id, name, date, cityId, maxMembers, description, holderId) => {
+    editEvent = (id, name, date, cityId, maxMembers, description, holderId, contacts) => {
         return this.fetch(`/api/v1/event`, {
             method: 'POST',
             body: JSON.stringify({
@@ -28,7 +29,8 @@ export default class AuthService {
                 cityId,
                 maxMembers,
                 description,
-                holderId
+                holderId,
+                contacts
             })
         }).then(res => {
             return Promise.resolve(res);
