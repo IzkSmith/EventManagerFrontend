@@ -58,7 +58,8 @@ export default class Members extends Component {
             "maxMembers": ${this.state.maxMembers},
             "userIds": [${userIds}],
             "description": "${this.state.description}",
-            "holderId":" ${this.state.holderId}"
+            "holderId":" ${this.state.holderId}",
+            "contacts":"${this.state.contacts}"
         }`;
         this.deleteUser(data);
     };

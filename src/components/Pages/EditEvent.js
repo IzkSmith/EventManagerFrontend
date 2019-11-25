@@ -69,7 +69,7 @@ export default class EditEvent extends Component {
                                name="date"
                                value={(this.state.date || '').replace(/ /g, "T")}
                                type="datetime-local"
-                               min="2019-10-14T00:00" max="2020-12-30T00:00"
+                               min="2019-09-14T00:00" max="2020-12-30T00:00"
                                onChange={this.handleChange}
                         />
                         <p>City :

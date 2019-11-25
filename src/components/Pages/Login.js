@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 import VK, { Auth } from "react-vk";
 import GoogleLogin from "react-google-login";
 import AuthService from "../../service/AuthService";
-import SideNav from "../SideNav";
 
 export default class Login extends Component {
     state = {
@@ -39,6 +38,11 @@ export default class Login extends Component {
     handleChange = (e) => this.setState({[e.target.name]: e.target.value});
 
     render() {
+        const authenticate = (response) => {
+            console.log(response);
+            // Api call to server so we can validate the token
+        };
+
         const responseGoogle = (response) => {
             console.log(response);
             let user = response.profileObj;
@@ -115,6 +119,7 @@ export default class Login extends Component {
                         cookiePolicy={'single_host_origin'}
                     />
                 </VK>
+
                 <p><a href={"/Events"}>or proceed as guest</a></p>
             </div>
         );

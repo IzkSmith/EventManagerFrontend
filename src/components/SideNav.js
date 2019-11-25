@@ -17,7 +17,7 @@ export default class SideNav extends Component {
             <div>
                 <h2>{localStorage.getItem('firstName')} {localStorage.getItem('lastName')}</h2>
                 {adminPanel}
-                <a href={"/Events"}>Home</a>
+                <a href={"/Home"}>Home</a>
                 <a href={"/Events"}>Events</a>
                 <a href={"/Account"}>Account</a>
                 <a onClick={this.handleLogout.bind(this)}>Logout</a>

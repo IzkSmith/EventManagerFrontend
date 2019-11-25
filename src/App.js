@@ -10,6 +10,7 @@ import EditEvent from "./components/Pages/EditEvent";
 import Members from "./components/Pages/Members";
 import AdminPanel from "./components/Pages/AdminPanel";
 import Account from "./components/Pages/Account";
+import Home from "./components/Pages/Home";
 
 export default function App (){
     return (
@@ -33,6 +34,9 @@ export default function App (){
                         </Route>
                         <Route path="/Events">
                             <Events />
+                        </Route>
+                        <Route path="/Home">
+                            <Home />
                         </Route>
                         <Route path="/Event/:id">
                             <Event />
