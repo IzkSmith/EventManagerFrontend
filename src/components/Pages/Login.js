@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import VK, { Auth } from "react-vk";
 import GoogleLogin from "react-google-login";
 import AuthService from "../../service/AuthService";
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
 export default class Login extends Component {
     state = {
@@ -38,9 +39,19 @@ export default class Login extends Component {
     handleChange = (e) => this.setState({[e.target.name]: e.target.value});
 
     render() {
-        const authenticate = (response) => {
+        const responseFacebook = (response) => {
             console.log(response);
-            // Api call to server so we can validate the token
+            let user = response;
+            localStorage.setItem('avatar', user.picture.data.url);
+            this.Auth.login(user.id, user.id)
+                .then(res => {
+                    window.location.href = '/Events';
+                })
+                .catch(err => {
+                    this.Auth.newUser(user.name || '', "", user.id, user.email, user.id)
+                        .then(res => {this.login(user.googleId, user.googleId);
+                        })
+                })
         };
 
         const responseGoogle = (response) => {
@@ -117,6 +128,17 @@ export default class Login extends Component {
                         onSuccess={responseGoogle}
                         onFailure={responseGoogle}
                         cookiePolicy={'single_host_origin'}
+                    />
+                    <p/>
+                    <FacebookLogin
+                        appId="2331291133643897"
+                        fields="name,email,picture"
+                        callback={responseFacebook}
+                        render={renderProps => (
+                            <button className={"externalAuth"} onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                                <img src={require("../../images/facebook.png")}/>
+                            </button>
+                        )}
                     />
                 </VK>
 
