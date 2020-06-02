@@ -51,36 +51,36 @@ export default class Account extends Component {
     render() {
         console.log(this.state);
         let user = this.state.loaded ? this.state.user : '';
-        let requestButton = <button type="button" onClick={()=>{this.handleRoleRequest(user)}}>Request Holder</button>;
+        let requestButton = <button type="button" onClick={()=>{this.handleRoleRequest(user)}}>Запросить роль организатора</button>;
         return (
             <div>
                 <div className="page_block">
-                    <h1 className={"page_block_header"}>Your account</h1>
+                    <h1 className={"page_block_header"}>Ваш профиль</h1>
                     <MyAvatar/>
                     <form onSubmit={this.handleFormSubmit}>
                         <div className={"pedit_row clear_fix"}>
-                            <div className={"pedit_label"}> First name:</div>
+                            <div className={"pedit_label"}> Имя:</div>
                             <input  value={user.firstName} name="firstName" onChange={this.handleChange}/>
                         </div>
                         <div className={"pedit_row clear_fix"}>
-                            <div className={"pedit_label"}> Last name:</div>
+                            <div className={"pedit_label"}> Фамилия:</div>
                             <input value={user.lastName} name="lastName" onChange={this.handleChange}/>
                         </div>
                         <div className={"pedit_row clear_fix"}>
-                            <div className={"pedit_label"}> Username:</div>
+                            <div className={"pedit_label"}> Имя пользователя:</div>
                             <input value={user.username} name="username" onChange={this.handleChange}/>
                         </div>
                         <div className={"pedit_row clear_fix"}>
-                            <div className={"pedit_label"}> Email:</div>
+                            <div className={"pedit_label"}> Электронная почта:</div>
                             <input value={user.email} name="email" onChange={this.handleChange}/>
                         </div>
-                        <input type="submit"  value="submit" />
+                        <input type="submit"  value="Сохранить изменения" />
                     </form>
                     <p/>
-                    <label>Role:
+                    <label>Роль:
                         {
-                            (user.roles || []).includes(1) ? ' Admin' :
-                                (user.roles || []).includes(2)? ' Holder' : ' Member'
+                            (user.roles || []).includes(1) ? ' Администратор' :
+                                (user.roles || []).includes(2)? ' Организатор' : ' Пользователь'
                         }
                     </label>
                     {((localStorage.getItem('roles') || []).includes(2) || user.wantsNewRole === true)? '' : requestButton}

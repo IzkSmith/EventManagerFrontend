@@ -40,13 +40,13 @@ export default class NewEvent extends Component {
         return (
             <div>
                 <div className="formBox">
-                    <h1>Create new Event</h1>
+                    <h1>Создание нового мероприятия</h1>
                     <form onSubmit={this.handleFormSubmit}>
                         <input className="textbox"
                                 name="name"
                                type="text"
                                maxLength={90}
-                               placeholder="Event name"
+                               placeholder="Название мероприятия"
                                onChange={this.handleChange}
                         />
                         <input className="textbox"
@@ -54,14 +54,14 @@ export default class NewEvent extends Component {
                                type="datetime-local"
                                min="2019-10-14T00:00"
                                max="2020-12-30T00:00"
-                               placeholder="Date"
+                               placeholder="Дата проведения"
                                onChange={this.handleChange}
                         />
-                        <p>City :
+                        <p>Город :
                             <select name="cityId" onChange={this.handleChange}>
                                 {this.state.content.map(content =>
                                     <option value={content.id}>{content.name}</option>)}
-                                <option>Select city</option>
+                                <option>Выбрать город</option>
                             </select >
                         </p>
                         <input className="textbox"
@@ -69,7 +69,7 @@ export default class NewEvent extends Component {
                                type="number"
                                min="5"
                                max="200000000"
-                               placeholder="Max members"
+                               placeholder="Максимальное количество участников"
                                onChange={this.handleChange}
                         />
                         <textarea className="textbox"
@@ -77,18 +77,18 @@ export default class NewEvent extends Component {
                                   required
                                   maxLength={2048}
                                   name="description"
-                                  placeholder="Description"
+                                  placeholder="Описание мероприятия"
                                   onChange={this.handleChange}
                         />
                         <input className="textbox"
                                name="contacts"
                                type="text"
                                maxLength={90}
-                               placeholder="Contacts"
+                               placeholder="Контакты организатора"
                                onChange={this.handleChange}
                         />
 
-                        <input type="submit" className="btn" value="submit"/>
+                        <input type="submit" className="btn" value="Создать"/>
                     </form>
                 </div>
                 <div className="sideNav">

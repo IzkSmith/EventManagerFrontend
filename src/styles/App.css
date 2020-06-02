@@ -12,11 +12,11 @@ body {
   position: absolute;
   left: 12%;
   top: 89%;
-  background: black;
+  background: #150f2f;
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #2ecc71;
+  border: 2px solid deepskyblue;
   padding: 15px 40px;
   outline: none;
   color: white;
@@ -27,10 +27,10 @@ body {
 .admin {
   color: white;
   width: 125px;
-  background: black;
+  background: #150f2f;
   text-align: center;
   display: block;
-  border: 2px solid #2ecc71;
+  border: 2px solid deepskyblue;
   padding: 15px 4px;
   outline: none;
   cursor: pointer;
@@ -48,10 +48,10 @@ a:visited {
 
 .logout {
   position: absolute;
-  background: black;
+  background: #150f2f;
   display: block;
   text-align: center;
-  border: 2px solid #2ecc71;
+  border: 2px solid deepskyblue;
   padding: 15px 40px;
   outline: none;
   color: white;
@@ -65,18 +65,18 @@ a:visited {
 input[type="button"]:hover,
 input[type="submit"]:hover,
 button[type="button"]:hover{
-  background: #2ecc71;
+  background: deepskyblue;
   transition: 0.4s;
 }
 
 .sidenav {
   height: 100%;
-  width: 180px;
+  width: 200px;
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: black;
+  background-color: #150f2f;
   overflow-x: hidden;
   padding-top: 20px;
 }
@@ -95,7 +95,7 @@ button[type="button"]:hover{
 
 .main {
   text-align: center;
-  color: black;
+  color: #150f2f;
   margin-left: 180px; /* Same as the width of the sidenav */
   font-size: 24px; /* Increased text to enable scrolling */
   padding: 0px 10px;

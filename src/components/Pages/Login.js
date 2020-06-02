@@ -25,7 +25,7 @@ export default class Login extends Component {
                 window.location.href = '/Events';
             })
             .catch(err => {
-                alert('Wrong username or password');
+                alert('Неправильно введены данные');
             })
     };
 
@@ -71,25 +71,25 @@ export default class Login extends Component {
 
         return (
             <div className="loginBox" >
-                <h1>Login</h1>
+                <h1>Авторизация</h1>
                 <form onSubmit={this.handleFormSubmit}>
                     <input
-                        placeholder="Username"
+                        placeholder="Имя пользователя"
                         name="username"
                         type="text"
                         onChange={this.handleChange}
                     />
                     <input
-                        placeholder="Password"
+                        placeholder="Пароль"
                         name="password"
                         type="password"
                         onChange={this.handleChange}
                     />
                     <input
-                        value="submit"
+                        value="Войти"
                         type="submit"
                     />
-                    <p>don't have an account yet? <Link to="/Signup">Sign up</Link></p>
+                    <p>Еще нет учетной записи? <Link to="/Signup">Регистрация</Link></p>
                 </form>
                 <VK apiId={7178797}>
                     {!this.state.vk ?
@@ -142,7 +142,7 @@ export default class Login extends Component {
                     />
                 </VK>
 
-                <p><a href={"/Events"}>or proceed as guest</a></p>
+                <p><a href={"/Events"}>или продолжить как гость</a></p>
             </div>
         );
     }

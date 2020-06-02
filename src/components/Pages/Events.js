@@ -62,21 +62,21 @@ export default class Events extends Component {
         console.log(this.state);
         let createButton = ( (localStorage.getItem('roles') || '').includes(2) ) ?
                 <Link to="/NewEvent">
-                    <input className="leftButton" type="submit" name="" value="Create new event"/>
+                    <input className="leftButton" type="submit" name="" value="Создать новое мероприятие"/>
                 </Link>
             : '';
 
         let prevButton = ((+localStorage.getItem('page') > 0) && (this.state.loaded)) ?
-            <button type="button" className="prev" onClick={this.handlePrevClick}>Prev</button> : '';
+            <button type="button" className="prev" onClick={this.handlePrevClick}>Предыдущая</button> : '';
 
         let nextButton = ((+localStorage.getItem('page') < this.state.totalPages - 1) && (this.state.loaded)) ?
-            <button type="button" className="next" onClick={this.handleNextClick}>Next</button> : '';
+            <button type="button" className="next" onClick={this.handleNextClick}>Следующая</button> : '';
 
         return (
             <div>
                 <div className="events-box">
-                    <h1>Upcoming Events</h1>
-                    <p>Events on the page <select name="pageSize" onChange={this.handleChange}>
+                    <h1>Предстоящие мероприятия</h1>
+                    <p>Количество мероприятий на странице <select name="pageSize" onChange={this.handleChange}>
                             <option value={10} selected>10</option>
                             <option value={15}>15</option>
                     </select ></p>
@@ -86,10 +86,10 @@ export default class Events extends Component {
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
-                                        <th>Date</th>
-                                        <th>City</th>
-                                        <th>max/current</th>
+                                        <th>Название</th>
+                                        <th>Дата</th>
+                                        <th>Город</th>
+                                        <th>Максимальное кол-во участников/текущее</th>
                                         <th/>
                                     </tr>
                                 </thead>
@@ -103,7 +103,7 @@ export default class Events extends Component {
                                                 <td>({content.maxMembers}/{content.userIds.length})</td>
                                                 <td>
                                                     <Link to={`/Event/${content.id}`}>
-                                                        <input className="about" type="button" value={"about"}/>
+                                                        <input className="about" type="button" value={"Подробнее"}/>
                                                     </Link>
                                                 </td>
                                             </tr>
@@ -115,7 +115,7 @@ export default class Events extends Component {
                             </table>
                     }
                     {prevButton}
-                    <p>Page : {+localStorage.getItem('page') + 1} of {this.state.totalPages}</p>
+                    <p>Страница : {+localStorage.getItem('page') + 1} из {this.state.totalPages}</p>
                     {nextButton}
                 </div>
                 <div className="sideNav">

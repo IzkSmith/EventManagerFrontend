@@ -77,14 +77,14 @@ export default class Members extends Component {
         return (
             <div>
                 <div className="events-box">
-                    <h1>Members of event #{localStorage.getItem('event_id')}</h1>
-                    <p>total :{(this.state.userIds || '').length}</p>
+                    <h1>Участники мероприятия #{localStorage.getItem('event_id')}</h1>
+                    <p>Всего участников :{(this.state.userIds || '').length}</p>
                     {
                         this.state.loaded?
                             <table width="700" align="center">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Имя</th>
                                     <th/>
                                 </tr>
                                 </thead>
@@ -95,7 +95,7 @@ export default class Members extends Component {
                                         <td>
                                                 <input className="about"
                                                        type="button"
-                                                       value={"delete"}
+                                                       value={"Отписать от мероприятия"}
                                                        onClick={() => this.handleDelete(item.id)}
                                                 />
                                         </td>

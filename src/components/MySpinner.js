@@ -5,7 +5,7 @@ export default class MySpinner extends Component {
     render() {
         return (
             <div className={"spinner"}>
-                <Spinner size={120} spinnerColor={"#2ecc71"} spinnerWidth={2} visible={true} />
+                <Spinner size={120} spinnerColor={"deepskyblue"} spinnerWidth={2} visible={true} />
             </div>
         );
     }

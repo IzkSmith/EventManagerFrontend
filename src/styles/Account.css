@@ -4,7 +4,7 @@
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
     margin: 15px 0 0;
     display: block;
-    color: black;
+    color: #150f2f;
     padding: 40px;
     position: absolute;
     top: 50%;
@@ -24,11 +24,11 @@
     border-radius: 4px 4px 0 0;
     font-size: 16px;
     outline: none;
-    color: #000;
+    color: #150f2f;
 }
 
 .pedit_row {
-    padding-bottom: 15px;
+    padding: 15px;
 }
 
 .clear_fix {
@@ -37,8 +37,8 @@
 
 .pedit_label {
     color: #656565;
-    width: 90px;
-    padding: 6px 10px 0 0;
+    width: 150px;
+    padding: 2px 10px 0 0;
     line-height: 16px;
     float: left;
     text-align: right;

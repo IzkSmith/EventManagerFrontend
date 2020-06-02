@@ -2,11 +2,11 @@
     position: absolute;
     left: 89%;
     top: 89%;
-    background: black;
+    background: #150f2f;
     display: block;
     margin: 20px auto;
     text-align: center;
-    border: 2px solid #2ecc71;
+    border: 2px solid deepskyblue;
     padding: 15px 40px;
     outline: none;
     color: white;
@@ -21,11 +21,11 @@
 
 .signupButton {
     position: absolute;
-    left: 52%;
+    left: 48%;
     top: 91%;
-    background: black;
+    background: #150f2f;
     display: block;
-    border: 2px solid #2ecc71;
+    border: 2px solid deepskyblue;
     padding: 15px 40px;
     outline: none;
     color: white;

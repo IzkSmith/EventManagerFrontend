@@ -33,51 +33,51 @@ export default class Signup extends Component {
     render() {
         console.log(this.state);
         let passwordsError = (this.state.password!==this.state.rPassword)?
-            <p style={{color: 'red', margin: 5}}>Passwords don't match</p>: '';
+            <p style={{color: 'red', margin: 5}}>Пароли не совпадают</p>: '';
 
         return (
             <div>
                 <div className="formBox">
-                    <h1>Registration Form</h1>
+                    <h1>Регистрация нового пользователя</h1>
                     <form onSubmit={this.handleFormSubmit}>
                         <input className="textbox"
                                name="firstName"
                                type="text"
-                               placeholder="First name"
+                               placeholder="Имя"
                                onChange={this.handleChange}
                         />
                         <input className="textbox"
                                name="lastName"
                                type="text"
-                               placeholder="Last name"
+                               placeholder="Фамилия"
                                onChange={this.handleChange}
                         />
                         <input className="textbox"
                                name="username"
                                type="text"
-                               placeholder="Username"
+                               placeholder="Пользователь"
                                onChange={this.handleChange}
                         />
                         <input className="textbox"
                                name="email"
                                type="email"
-                               placeholder="Email"
+                               placeholder="Электронная почта"
                                onChange={this.handleChange}
                         />
                         <input className="textbox"
                                name="password"
                                type="password"
-                               placeholder="Password"
+                               placeholder="Пароль"
                                onChange={this.handleChange}
                         />
                         {passwordsError}
                         <input className="textbox"
                                name="rPassword"
                                type="password"
-                               placeholder="Repeat password"
+                               placeholder="Повторите пароль"
                                onChange={this.handleChange}
                         />
-                        <input type="submit" className="btn" value="submit"/>
+                        <input type="submit" className="btn" value="Зарегистрироваться"/>
                     </form>
                 </div>
             </div>

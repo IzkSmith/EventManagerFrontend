@@ -49,16 +49,16 @@ export default class AdminPanel extends Component {
         return (
             <div>
                 <div className="events-box">
-                    <h1>Users</h1>
-                    <p>total : {this.state.numberOfElements}</p>
+                    <h1>Список пользователей</h1>
+                    <p>Всего : {this.state.numberOfElements}</p>
                     {
                         this.state.loaded?
                             <table width="700" align="center">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Username</th>
-                                    <th>Role</th>
+                                    <th>Полное имя</th>
+                                    <th>Имя пользователя</th>
+                                    <th>Роль</th>
                                     <th/>
                                     <th/>
                                 </tr>
@@ -70,21 +70,21 @@ export default class AdminPanel extends Component {
                                         <td>{item.username}</td>
                                         <td>
                                             {
-                                                role =item.roles.includes(1) ?
-                                            'Admin' :
-                                            item.roles.includes(2)? 'Holder' : 'Member'}
+                                                role = item.roles.includes(1) ?
+                                            'Администратор' :
+                                            item.roles.includes(2) ? 'Организатор' : 'Пользователь'}
                                         </td>
-                                        {role === 'Admin'? <p/> :
+                                        {role === 'Администратор'? <p/> :
                                             <td>
                                                 <input className="about"
                                                        type="button"
-                                                       value={ role === 'Holder'? 'take back' : 'grant Holder'}
+                                                       value={ role === 'Организатор'? 'Понизить' : 'Повысить'}
                                                        onClick={() => this.handleGrant(item)}
                                                 />
                                             </td>
                                         }
                                         <td>{
-                                            item.wantsNewRole=== true? <p>Requested <button type="button" className="about" onClick={()=>{this.handleDenyRequest(item)}}>deny</button></p>: ''
+                                            item.wantsNewRole=== true? <p>Запросил повышение <button type="button" className="about" onClick={()=>{this.handleDenyRequest(item)}}>Отказать</button></p>: ''
                                         }</td>
                                     </tr>
                                     </tbody>)}

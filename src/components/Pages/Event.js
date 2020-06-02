@@ -70,19 +70,19 @@ class Event extends React.Component {
 
             editButton =
                 <Link to="/EditEvent">
-                    <input className="leftButton" type="submit" name="" value="Edit this event"/>
+                    <input className="leftButton" type="submit" name="" value="Изменить мероприятие"/>
                 </Link>;
 
             if ((userIds || '').length>0) {
                 membersButton =
                     <Link to={"/Members"}>
-                        <input className="members" type="submit" name="" value="members"/>
+                        <input className="members" type="submit" name="" value="Участники"/>
                     </Link>;
             }
         }
 
         this.Auth = new AuthService();
-        let label = (userIds || []).includes(userId) ? 'Sign out' : 'Sign up';
+        let label = (userIds || []).includes(userId) ? 'Отписаться от мероприятия' : 'Зарегистрироваться на мероприятие';
         let signUpButton = (this.Auth.isLoggedIn()) ?
             <button type={"button"} className="signupButton" onClick={this.handleSignup}>{label}</button> : '';
 
@@ -92,12 +92,12 @@ class Event extends React.Component {
                     {this.state.loaded?
                         <div>
                             <h2>{this.state.name}</h2>
-                            <p>Date : {(this.state.date||'').replace(/T/g, " ")}</p>
-                            <p>City : {this.state.cityName}</p>
-                            <p>Members ( Max : {this.state.maxMembers} / Current : {(userIds || '').length}) </p>
-                            <h3>Description</h3>
+                            <p>Дата : {(this.state.date||'').replace(/T/g, " ")}</p>
+                            <p>Город : {this.state.cityName}</p>
+                            <p>Участники ( Максимально : {this.state.maxMembers} / Зарегистрировано : {(userIds || '').length}) </p>
+                            <h3>Описание</h3>
                             <p>{this.state.description}</p>
-                            <div className={'holder-contacts'}><p>Holder contacts: {this.state.contacts}</p></div>
+                            <div className={'holder-contacts'}><p>Контакты организатора: {this.state.contacts}</p></div>
                         </div>
                         :
                         <MySpinner/>

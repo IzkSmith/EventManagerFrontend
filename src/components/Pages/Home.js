@@ -49,7 +49,7 @@ export default class Home extends Component {
         return (
             <div>
                 <div className="events-box">
-                    <h1>Your Events</h1>
+                    <h1>Ваши мероприятия</h1>
                     {
                         this.state.loaded ?
                             <table width="1400" align="center">
@@ -73,7 +73,7 @@ export default class Home extends Component {
                                         <td>({content.maxMembers}/{content.userIds.length})</td>
                                         <td>
                                             <Link to={`/Event/${content.id}`}>
-                                                <input className="about" type="button" value={"about"}/>
+                                                <input className="about" type="button" value={"Подробнее"}/>
                                             </Link>
                                         </td>
                                     </tr>
